@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace MihasGeneralisBot
@@ -10,9 +11,11 @@ namespace MihasGeneralisBot
         public string counterIndicators { get; set; }
         public string dateOfIndicate { get; set; }
 
-        public void sendIndicators()
+        public void sendIndicators(string path)
         {
-            System.IO.File.WriteAllText($"D://indicators/{dateOfIndicate} {counterNumber}.txt", counterIndicators);
+            Directory.CreateDirectory(path);
+            
+            File.WriteAllText(Path.Combine(path, $"{dateOfIndicate} {counterNumber}.txt"), counterIndicators);
         }
     }
 }
